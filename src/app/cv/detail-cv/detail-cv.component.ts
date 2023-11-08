@@ -1,0 +1,35 @@
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Cv } from '../model/cv';
+import { EmbaucheService } from '../services/embauche.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-detail-cv',
+  templateUrl: './detail-cv.component.html',
+  styleUrls: ['./detail-cv.component.css']
+})
+export class DetailCvComponent {
+  @Input({
+    required: true,
+  })
+  cv: Cv | null = null;
+  constructor(private embaucheService: EmbaucheService,
+    private router:Router,
+    private cd: ChangeDetectorRef){}
+  embaucher(){
+    if (this.cv){
+      this.embaucheService.Embaucher(this.cv);
+      setTimeout(() => {
+        this.cd.detectChanges(); // Force la détection des modifications
+      }, 100); // Attend 100ms avant de forcer la détection des modifications
+    
+    }
+
+  }
+
+  moreInfo(){
+    if (this.cv) {
+    const link = ['cv', this.cv.id];
+    this.router.navigate(link);
+  }}
+}
