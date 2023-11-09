@@ -33,7 +33,7 @@
   
   <button [disabled]="loginForm.invalid"
     class="btn btn-primary"
-    (click)="login(loginForm)">
+    (click)="login(loginForm.value)">
     Envoyer
   </button>
 </form>

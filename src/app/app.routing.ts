@@ -16,6 +16,7 @@ const APP_ROUTING: Routes = [
         ]
     }
     ,
+    {path: '', component: CvComponent},
     {path: 'rainbow', component: RainbowComponent},
     {path: 'word', component: WordComponent},
     {path: 'login', component: LoginComponent},

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +9,36 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
   
+  constructor(
+    private authentificationService: AuthentificationService,
+    private router: Router
+  ) {}
+  login(credentials: any){
+    //console.log(credentials)
+   this.authentificationService.login(credentials).
+   subscribe(
+    (response) => {
+      console.log(response)
+      localStorage.setItem
+      ('user', JSON.stringify(response));
+      this.router.navigate(['cv']);
+    }
+   )
   
-  login(loginForm: any){
-
   }
 
+ /* logout() {
+    this.authentificationService.logout().subscribe(
+      () => {
+        this.router.navigate(['/login']); // Assurez-vous que '/login' est le bon chemin
+      },
+      error => {
+        console.error('Erreur lors de la déconnexion :', error);
+      }
+    );
+  }*/
 
-  emailErrorMessage: string = '';
+  /*emailErrorMessage: string = '';
 
   
   validateEmail(email: string) {
@@ -23,5 +48,5 @@ export class LoginComponent {
     } else {
       this.emailErrorMessage = ''; 
     }
-  }
+  }*/
 }

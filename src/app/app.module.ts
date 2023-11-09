@@ -19,6 +19,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { DetailComponent } from './cv/detail/detail.component';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -36,14 +39,17 @@ import { LoginComponent } from './components/login/login.component';
     DetailComponent,
     ErrorComponent,
     LoginComponent,
+  
 
     
     
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+   HttpClientModule,
     ROUTING,
   	ToastrModule.forRoot()
   ],

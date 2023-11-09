@@ -6,9 +6,11 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
 export class RainbowDirective {
   tableau = [
     'blue',
-    'lightblue',
+    'red',
     'pink',
+    'yellow',
     'green',
+    'lightblue',
     'lightyellow',
     'lightgreen',
     'gold',

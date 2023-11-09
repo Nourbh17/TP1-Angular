@@ -20,8 +20,8 @@ export class DetailCvComponent {
     if (this.cv){
       this.embaucheService.Embaucher(this.cv);
       setTimeout(() => {
-        this.cd.detectChanges(); // Force la détection des modifications
-      }, 100); // Attend 100ms avant de forcer la détection des modifications
+        this.cd.detectChanges(); 
+      }, 100); 
     
     }
 

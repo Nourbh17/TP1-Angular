@@ -9,10 +9,22 @@ import { CvService } from '../services/cv.service';
 })
 export class CvComponent {
   selectedCv: Cv | null = null;
+  cvs: Cv[] = [];
   constructor(
 private cvService: CvService
   ){}
-  cvs: Cv[] = this.cvService.getCvs();
+  ngOnInit(): void {
+    this.cvService.getCvs().subscribe(
+      (cvs) => {
+        this.cvs = cvs;
+      },
+      (error) => {
+        alert('pb accès à l api : donnees fake');
+        this.cvs = this.cvService.getFakeCvs();
+      }
+    );
+  }
+ 
   onForwardCv(cv: Cv) {
     this.selectedCv = cv;
     console.log(cv);
