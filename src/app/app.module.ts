@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './cv/search/search.component';
+import { OperationsComponent } from './components/operations/operations.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { SearchComponent } from './cv/search/search.component';
     ErrorComponent,
     LoginComponent,
     SearchComponent,
+    OperationsComponent,
   
 
     
