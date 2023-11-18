@@ -32,8 +32,7 @@ export class SearchComponent implements OnInit {
   
 
   onSelectCv(cv: Cv): void {
-    // Redirigez l'utilisateur vers les détails du CV sélectionné
-    // Vous pouvez implémenter la redirection ici
+    
     this.cvSelected.emit(cv);
   }
 
