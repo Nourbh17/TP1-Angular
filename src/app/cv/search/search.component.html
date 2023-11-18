@@ -1,0 +1,10 @@
+<div>
+    <input class="form-control" type="text" [formControl]="searchControl" placeholder="{{ placeholder }}" />
+   
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let result of searchResults" (click)="onSelectCv(result)">
+        {{ result.name }} {{ result.firstname }}
+      </li>
+    </ul>
+  </div>
+  

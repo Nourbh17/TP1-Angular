@@ -15,8 +15,9 @@ export class EmbaucheService {
     const index = this.cvs.findIndex(c => c.id === cv.id);
     if (index === -1) {
       this.cvs.push(cv);
+      this.toastr.success(`${cv.name} est bien sélectionné`);
     } else {
-      this.toastr.error(`${cv.name} est déjà sélectionnée`, 'Avertissement');
+      this.toastr.error(`${cv.name} est déjà sélectionné`, 'Avertissement');
     }
   }
    getEmbauchees(): Cv[]{

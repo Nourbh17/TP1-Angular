@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,9 @@ link='https://apilb.tridevs.net/api/Users/login'
   ) { }
 
   login(credentials: any){
-    return this.http.post(this.link, credentials)
+    return this.http.post(this.link, credentials).pipe(
+      tap()
+    )
   }
 
 
