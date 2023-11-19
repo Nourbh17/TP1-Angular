@@ -1,23 +1,32 @@
 <br/>
-<app-search (cvSelected)="onCvSelected($event)" ></app-search>
+<app-search (cvSelected)="onCvSelected($event)"></app-search>
 <br/>
-<div>
-    <button class="btn btn-outline-info" [class.active]="currentTab === 'junior'" (click)="setTab('junior')">Juniors</button>
-    <button class="btn btn-outline-info" [class.active]="currentTab === 'senior'" (click)="setTab('senior')">Seniors</button>
-  </div>
-  <br/>
-
-<div class="row">
-    <div *ngIf="currentTab === 'junior'">
-        <app-list [cvs]="juniorCvs" (forwardCv)="onForwardCv($event)"></app-list>
-      </div>
-
-      <div *ngIf="currentTab === 'senior'">
-        <app-list [cvs]="seniorCvs" (forwardCv)="onForwardCv($event)"></app-list>
-      </div>
+<div class="alert alert-warning">
+  {{ date | date : "full" | uppercase }}<br />
+  Nombre de cvs sélectionnés: {{ (embauches$ | async)?.length ?? 0 }}
 </div>
 
-
 <div class="row">
-    <app-embauche></app-embauche>
+  <div class="col-md-6 col-sm-3">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" [class.active]="seniorsActive" (click)="showSeniors()">Seniors</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="showJuniors()" [class.active]="juniorsActive">Juniors</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-sm-3">
+    <app-list (forwardCv)="onForwardCv($event)" [cvs]="content"></app-list>
+  </div>
+  <div class="col-md-6 col-sm-9">
+    <app-detail-cv [cv]="selectedCv"></app-detail-cv>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 2%">
+  <app-embauche></app-embauche>
 </div>

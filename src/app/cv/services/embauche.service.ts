@@ -1,31 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Cv } from '../model/cv';
 import { ToastrService } from 'ngx-toastr';
-import { CvService } from './cv.service';
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmbaucheService {
  private cvs: Cv[] = [];
-  constructor(private toastr: ToastrService,
-    private cvService :CvService,) {
-   }
-   Embaucher(cv: Cv): void {
-    const index = this.cvs.findIndex(c => c.id === cv.id);
-    if (index === -1) {
-      this.cvs.push(cv);
-      this.toastr.success(`${cv.name} est bien sélectionné`);
-    } else {
-      this.toastr.error(`${cv.name} est déjà sélectionné`, 'Avertissement');
-    }
+  getEmbauches$ = new BehaviorSubject<Cv[]>([]);
+  embauches$ : Observable<Cv[]>;
+  constructor(
+    private toastr:ToastrService
+  ) {
+    this.embauches$ = this.getEmbauches$.asObservable()
   }
-   getEmbauchees(): Cv[]{
-    return this.cvs;
+
+   Embaucher(cv: Cv): void {
+     var embauches = this.getEmbauches$.value
+     if (embauches.findIndex((c)=> c.id == cv.id) == -1){
+       embauches = [...embauches, cv]
+       this.getEmbauches$.next(embauches);
+
+       this.toastr.success(`Le candidat ${cv.firstname} ${cv.name} a été ajouté`)
+     } else {
+       this.toastr.warning(`Le candidat ${cv.firstname} ${cv.name} est déja embauché`)
+     }
+  }
+   getEmbauchees(): Observable<Cv[]>{
+    return this.getEmbauches$;
    }
-  
-   
 
 
-  
+
+
+
 }

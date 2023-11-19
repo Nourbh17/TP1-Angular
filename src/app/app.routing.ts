@@ -17,7 +17,13 @@ const APP_ROUTING: Routes = [
     {
         path:'cv',children: [
             {path: '', component: CvComponent,resolve:{cvs:cvResolver} },
-            {path:'list',component:MasterComponent},
+            {path:'list',component:MasterComponent,resolve:{cvs:cvResolver},children: [
+                {
+                  path: ':id',
+                  component: DetailComponent,
+                  resolve: { cv: detailResolver },
+                },
+              ],},
             {path: ':id', component: DetailComponent,resolve:{cv: detailResolver}},
         ],
 

@@ -20,7 +20,17 @@ export class DetailComponent implements OnInit{
     private toastr: ToastrService,
     private router: Router
 
-    ){}
+    ){
+    this.activatedroute.params.subscribe(params => {
+      this.cv = this.activatedroute.snapshot.data['cv'];
+    },error => {
+        //console.error('Une erreur s\'est produite :', error);
+        this.toastr.error(`Aucun CV trouvé pour l'ID`, 'Attention');
+        this.router.navigate(['/NotFound']);
+      });
+  }
+
+
 
     /*ngOnInit() {
       this.activatedroute.params.pipe(
@@ -36,8 +46,6 @@ export class DetailComponent implements OnInit{
 */
 
 ngOnInit() {
-  this.cv = this.activatedroute.snapshot.data['cv'];
-  console.log('http')
   /*
   this.activatedroute.params.subscribe(params => {
     const id = params['id'];

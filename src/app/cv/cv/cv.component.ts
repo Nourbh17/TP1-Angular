@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {EmbaucheService} from "../services/embauche.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-cv',
@@ -16,11 +18,16 @@ export class CvComponent implements OnInit{
   cvs: Cv[] = [];
   seniorsActive = true;
   juniorsActive = false;
+  date = new Date();
+  embauches$ : Observable<Cv[]>;
   constructor(
     private cvService: CvService,
     private activatedroute: ActivatedRoute,
-    private router:Router
-  ){}
+    private router:Router,
+    private embaucheService:EmbaucheService
+  ){
+    this.embauches$=this.embaucheService.embauches$
+  }
   ngOnInit(): void {
     /*this.cvService.getCvs().subscribe(
       (cvs) => {
@@ -44,10 +51,10 @@ export class CvComponent implements OnInit{
       console.log('Data from resolver:', this.activatedroute.data);
       this.cvs = data.cvs;
     });
-    console.log('hi')
     this.juniorCvs = this.cvs.filter((cv) => cv.age && cv.age < 40);
     this.seniorCvs = this.cvs.filter((cv) => cv.age && cv.age >= 40);
     this.content=this.seniorCvs
+
   }
 
   onForwardCv(cv: Cv) {
