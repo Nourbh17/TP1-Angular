@@ -6,19 +6,25 @@ import { DetailComponent } from "./cv/detail/detail.component";
 import { ErrorComponent } from "./components/error/error.component";
 import { LoginComponent } from "./components/login/login.component";
 import { OperationsComponent } from "./components/operations/operations.component";
+import {ProductComponent} from "./components/products/product/product.component";
+import {cvResolver} from "./cv/resolvers/cv.resolver";
+import {detailResolver} from "./cv/resolvers/detail.resolver";
+import {MasterComponent} from "./cv/master/master.component";
 
 
 
 const APP_ROUTING: Routes = [
     {
         path:'cv',children: [
-            {path: '', component: CvComponent},
-            {path: ':id', component: DetailComponent},    
-        ]
+            {path: '', component: CvComponent,resolve:{cvs:cvResolver} },
+            {path:'list',component:MasterComponent},
+            {path: ':id', component: DetailComponent,resolve:{cv: detailResolver}},
+        ],
+
     }
     ,
-    {path: '', component: CvComponent},
     {path: 'rainbow', component: RainbowComponent},
+    {path: 'products', component: ProductComponent},
     {path: 'word', component: WordComponent},
     {path: 'login', component: LoginComponent},
     {path: 'NotFound', component: ErrorComponent},

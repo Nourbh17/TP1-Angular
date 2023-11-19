@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent {
+export class DetailComponent implements OnInit{
   cv: Cv | undefined;
 
   constructor(private cvService :CvService,
@@ -19,9 +19,9 @@ export class DetailComponent {
     private activatedroute: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router
-    
+
     ){}
-   
+
     /*ngOnInit() {
       this.activatedroute.params.pipe(
         switchMap(params => this.cvService.getCvById(params['id']))
@@ -36,12 +36,15 @@ export class DetailComponent {
 */
 
 ngOnInit() {
+  this.cv = this.activatedroute.snapshot.data['cv'];
+  console.log('http')
+  /*
   this.activatedroute.params.subscribe(params => {
     const id = params['id'];
     this.cvService.getCvById(id).subscribe(
       cv => {
         if (cv) {
-          
+
           this.cv = cv;
         }
       },
@@ -52,9 +55,9 @@ ngOnInit() {
         this.router.navigate(['/NotFound']);
       }
     );
-  });
+  });*/
 }
-  
+
     deleteCv() {
       if (this.cv) {
         this.cvService.deleteCv(this.cv.id).subscribe(

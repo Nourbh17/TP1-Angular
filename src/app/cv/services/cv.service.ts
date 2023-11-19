@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Cv } from '../model/cv';
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'rxjs';
+import {BehaviorSubject, Observable, catchError, map, tap, throwError, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,13 +35,24 @@ export class CvService {
       )
       .subscribe();
   }
- /* getCvs() : Observable<Cv[]> {
-    return this.http.get<Cv[]>(this.link);
-  }*/
+
+  getCvs() : Observable<Cv[]> {
+    return this.http.get<Cv[]>(this.link).pipe(
+      map((cvs) => {
+        this.cvs = cvs;
+        return cvs;
+      }),
+      catchError(() => {
+        //  this.toaster.error('Erreur de récupération de données');
+        return of(this.cvs);
+      })
+    );
+  }
+
   getFakeCvs(){
     return this.cvs;
   }
- 
+
   searchCvs(name: string): Observable<Cv[]> {
     const searchParams = { where: { name: { like: `%${name}%` } } };
     const url = `${this.link}?filter=${encodeURIComponent(JSON.stringify(searchParams))}`;
@@ -57,5 +68,5 @@ export class CvService {
   }
 
 
-  
+
 }

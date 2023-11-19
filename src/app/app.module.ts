@@ -23,6 +23,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './cv/search/search.component';
 import { OperationsComponent } from './components/operations/operations.component';
+import { ProductComponent } from './components/products/product/product.component';
+import { ProductItemComponent } from './components/products/product-item/product-item.component';
+import { MasterComponent } from './cv/master/master.component';
 
 
 @NgModule({
@@ -43,10 +46,9 @@ import { OperationsComponent } from './components/operations/operations.componen
     LoginComponent,
     SearchComponent,
     OperationsComponent,
-  
-
-    
-    
+    ProductComponent,
+    ProductItemComponent,
+    MasterComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,7 @@ import { OperationsComponent } from './components/operations/operations.componen
    HttpClientModule,
    ReactiveFormsModule,
     ROUTING,
-  	ToastrModule.forRoot()
+  	ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
