@@ -2,8 +2,8 @@
 <app-search (cvSelected)="onCvSelected($event)" ></app-search>
 <br/>
 <div>
-    <button class="btn btn-outline-info" [class.active]="currentTab === 'junior'" (click)="setTab('junior')">Juniors</button>
-    <button class="btn btn-outline-info" [class.active]="currentTab === 'senior'" (click)="setTab('senior')">Seniors</button>
+    <button class="btn btn-outline-info" [ngClass]="{ active: currentTab === 'junior' }" (click)="setTab('junior')">Juniors</button>
+    <button class="btn btn-outline-info" [ngClass]="{active: currentTab === 'senior'}" (click)="setTab('senior')">Seniors</button>
   </div>
   <br/>
 

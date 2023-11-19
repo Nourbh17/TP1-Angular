@@ -15,16 +15,17 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['rainbow']">Rainbow</a>
         </li>
-        <ng-container *ngIf="isLoggedIn(); else showLogin">
+        <ng-container *ngIf="isLoggedIn$ | async">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['login']"(click)="logout()">Logout</a>
+            <a class="nav-link" [routerLink]="[]"
+            (click)="logout()">Logout</a>
           </li>
         </ng-container>
-        <ng-template #showLogin>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['login']">Login</a>
-          </li>
-        </ng-template>
+        <li class="nav-item" *ngIf="isLoggedOut$ | async">
+          <a class="nav-link" [routerLink]="['login']">Login</a>
+        </li>
+        
+        
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['operations']">operations</a>
         </li>

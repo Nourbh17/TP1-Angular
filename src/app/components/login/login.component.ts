@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { loginDto } from 'src/app/dtos/login.dto';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
@@ -13,8 +14,7 @@ export class LoginComponent {
     private authentificationService: AuthentificationService,
     private router: Router
   ) {}
-  login(credentials: any){
-    //console.log(credentials)
+  /*login(credentials: any){
    this.authentificationService.login(credentials).
    subscribe(
     (response) => {
@@ -25,6 +25,13 @@ export class LoginComponent {
     }
    )
   
+  }*/
+  login(credentials: any){
+    this.authentificationService.login(
+      new loginDto(credentials.email, credentials.password)
+    ).subscribe(
+      ()=> this.router.navigate(['cv'])
+    )
   }
 
  /* logout() {

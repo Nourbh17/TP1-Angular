@@ -29,8 +29,6 @@ export class SearchComponent implements OnInit {
     });
 }
 
-  
-
   onSelectCv(cv: Cv): void {
     
     this.cvSelected.emit(cv);

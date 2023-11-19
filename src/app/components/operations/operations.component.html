@@ -1,45 +1,10 @@
-<div>
-    <label for="input1">Input 1:</label>
-    <input
-      type="number"
-      class="form-control"
-      aria-label="Default"
-      aria-describedby="inputGroup-sizing-default"
-      [(ngModel)]="inputValue1"
-      (keyup.enter)="updateInput1()"
-    />
-    <button type="button" class="btn btn-outline-danger" (click)="terminateStream1()">
-      Terminate Stream 1
-    </button>
-  </div>
-  
-  <div>
-    <label for="input2">Input 2:</label>
-    <input
-      [(ngModel)]="inputValue2"
-      type="number"
-      class="form-control"
-      aria-label="Default"
-      aria-describedby="inputGroup-sizing-default"
-      (keyup.enter)="updateInput2()"
-    />
-    <button type="button" class="btn btn-outline-danger" (click)="terminateStream2()">
-      Terminate Stream 2
-    </button>
-  </div>
-  
-  <div>
-    <h3>Merge :</h3>
-    <p *ngFor="let value of resultMerge$ | async">{{ value }}</p>
-  </div>
-  
-  <div>
-    <h3>Scan :</h3>
-    <p>{{ resultScan$ | async }}</p>
-  </div>
-  
-  <div>
-    <h3>Reduce :</h3>
-    <p>{{ resultReduce }}</p>
-  </div>
-  
+<div [formGroup]="Form" class="container">
+  <input type="number" class="form-control" formControlName="input1" />
+  <button class="btn btn-danger" (click)="terminate1()">Terminate Stream 1</button>
+  <input type="number" class="form-control"  formControlName="input2" />
+  <button class="btn btn-danger" (click)="terminate2()">Terminate Stream 2</button>
+  <br />
+  <div class="p-1">Merge: {{ merge$ | async }}</div>
+  <div class="p-1">Scan: {{ scan$ | async }}</div>
+  <div class="p-1">Reduce: {{ reduce$ | async }}</div>
+</div>

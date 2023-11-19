@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
@@ -7,14 +8,24 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private authentificationService: AuthentificationService) {}
+  isLoggedIn$ : Observable<boolean>
+  isLoggedOut$ : Observable<boolean>
+  
+  constructor(private authentificationService: AuthentificationService) {
+    this.isLoggedIn$ = this.authentificationService.isLoggedIn$;
+    this.isLoggedOut$ = this.authentificationService.isLoggedOut$;
+  }
 
-  isLoggedIn(): boolean {
+  logout(){
+    this.authentificationService.logout();
+  }
+  
+  /*isLoggedIn(): boolean {
     // Vérifier l'état de connexion en fonction des informations stockées localement
     return this.authentificationService.isUserLoggedIn(); // Méthode à implémenter dans votre service d'authentification
   }
 
   logout(): void {
     this.authentificationService.logout(); // Appel à la méthode de déconnexion
-  }
+  }*/
 }

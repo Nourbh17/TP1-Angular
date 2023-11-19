@@ -1,16 +1,72 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { User } from '../models/user';
+import { loginDto } from '../dtos/login.dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
-link='https://apilb.tridevs.net/api/Users/login'
+  isLoggedIn$ : Observable<boolean>
+  user = new BehaviorSubject<User | null>(null);
+  isLoggedOut$ :Observable<boolean>
+
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+    const user = localStorage.getItem('user');
 
+    this.isLoggedIn$ = this.user.pipe(
+      map((res)=>{
+        if (res == null)
+          return false
+        return true
+      }))
+      this.isLoggedOut$ = this.user.pipe(
+        map((res)=>{
+          if (res == null)
+            return true
+          return false
+        }))
+    
+        if (user !== null) {
+          this.loginUser(JSON.parse(user));
+        } else {
+          this.logout();
+        }
+   }
+  
+
+  loginUser(user: any) {
+    this.user.next(user);
+  }
+
+  login(dto: loginDto) {
+    return this.http
+      .post<Response>('https://apilb.tridevs.net/api/Users/login', dto)
+      .pipe(
+        tap((res) =>{
+          const user = {
+            email: dto.email,
+            //id: userId,
+          };
+          localStorage.setItem('user', JSON.stringify(user));
+          this.loginUser(user);   
+        }),
+      )
+  }
+
+  logout() {
+    localStorage.removeItem("user");
+    this.user.next(null);
+  }
+}
+
+
+  /*
+  
+  link='https://apilb.tridevs.net/api/Users/login'
   login(credentials: any){
     return this.http.post(this.link, credentials).pipe(
       tap()
@@ -31,5 +87,5 @@ link='https://apilb.tridevs.net/api/Users/login'
       observer.next(true); 
       observer.complete();
     });
-  }
-}
+  }*/
+
