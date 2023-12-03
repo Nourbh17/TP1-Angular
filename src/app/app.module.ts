@@ -26,6 +26,7 @@ import { OperationsComponent } from './components/operations/operations.componen
 import { ProductComponent } from './components/products/product/product.component';
 import { ProductItemComponent } from './components/products/product-item/product-item.component';
 import { MasterComponent } from './cv/master/master.component';
+import { AddComponent } from './cv/add/add.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { MasterComponent } from './cv/master/master.component';
     ProductComponent,
     ProductItemComponent,
     MasterComponent,
+    AddComponent,
   ],
   imports: [
     BrowserModule,

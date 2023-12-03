@@ -52,6 +52,9 @@ export class CvService {
   getFakeCvs(){
     return this.cvs;
   }
+  addCv(cv: Cv){
+    return this.http.post(this.link, cv);
+  }
 
   searchCvs(name: string): Observable<Cv[]> {
     const searchParams = { where: { name: { like: `%${name}%` } } };

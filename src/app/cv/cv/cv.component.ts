@@ -15,7 +15,6 @@ export class CvComponent implements OnInit{
   seniorCvs: Cv[] = [];
   content: Cv[]=[];
   selectedCv: Cv | null = null;
-  cvs: Cv[] = [];
   seniorsActive = true;
   juniorsActive = false;
   date = new Date();
@@ -47,19 +46,19 @@ export class CvComponent implements OnInit{
 
     this.cvService.loadCvs();*/
     // @ts-ignore
-    this.activatedroute.data.subscribe((data: { cvs: Cv[] }) => {
-      console.log('Data from resolver:', this.activatedroute.data);
-      this.cvs = data.cvs;
-    });
-    this.juniorCvs = this.cvs.filter((cv) => cv.age && cv.age < 40);
-    this.seniorCvs = this.cvs.filter((cv) => cv.age && cv.age >= 40);
+    const cvs =this.activatedroute.snapshot.data['cvs']
+    console.log(cvs)
+    // @ts-ignore
+    this.juniorCvs = cvs.filter((cv) => cv.age && cv.age < 40);
+    // @ts-ignore
+    this.seniorCvs = cvs.filter((cv) => cv.age && cv.age >= 40);
     this.content=this.seniorCvs
 
   }
 
   onForwardCv(cv: Cv) {
     this.selectedCv = cv;
-   // console.log(cv);
+    console.log(cv);
   }
 
   showJuniors() {

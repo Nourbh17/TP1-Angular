@@ -46,6 +46,7 @@ export class DetailComponent implements OnInit{
 */
 
 ngOnInit() {
+  this.cv = this.activatedroute.snapshot.data['cv'];
   /*
   this.activatedroute.params.subscribe(params => {
     const id = params['id'];

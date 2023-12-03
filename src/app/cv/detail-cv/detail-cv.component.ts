@@ -15,14 +15,15 @@ export class DetailCvComponent {
   cv: Cv | null = null;
   constructor(private embaucheService: EmbaucheService,
     private router:Router,
-    //private cd: ChangeDetectorRef
-    ){}
+    ){
+  }
+
   embaucher(){
     if (this.cv){
       this.embaucheService.Embaucher(this.cv);
      // setTimeout(() => {
-       // this.cd.detectChanges(); 
-      //}, 100); 
+       // this.cd.detectChanges();
+      //}, 100);
     }
 
   }

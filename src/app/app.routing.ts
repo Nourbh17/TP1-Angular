@@ -10,6 +10,7 @@ import {ProductComponent} from "./components/products/product/product.component"
 import {cvResolver} from "./cv/resolvers/cv.resolver";
 import {detailResolver} from "./cv/resolvers/detail.resolver";
 import {MasterComponent} from "./cv/master/master.component";
+import {AddComponent} from "./cv/add/add.component";
 
 
 
@@ -24,6 +25,7 @@ const APP_ROUTING: Routes = [
                   resolve: { cv: detailResolver },
                 },
               ],},
+            {path:'add',component:AddComponent},
             {path: ':id', component: DetailComponent,resolve:{cv: detailResolver}},
         ],
 

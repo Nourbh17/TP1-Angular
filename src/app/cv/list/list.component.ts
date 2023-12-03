@@ -9,13 +9,7 @@ import {Router} from "@angular/router";
 })
 export class ListComponent {
   @Input() cvs: Cv[] = [];
-  @Output()
-  forwardCv = new EventEmitter();
-  @Input()
-  onSelectCv(cv: Cv): void {
-    console.log(cv);
-    this.forwardCv.emit(cv);
-  }
+
   @Output() itemSelected: EventEmitter<Cv> = new EventEmitter<Cv>();
 
   onItemClick(cv: Cv): void {
