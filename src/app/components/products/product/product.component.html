@@ -1,0 +1,16 @@
+<div style="margin-top: 4%;margin-bottom: 4%">
+  <ng-template *ngIf="(products$ |async) == null">
+    <span>loading....</span>
+  </ng-template>
+  <button class="btn btn-primary" style="margin-bottom: 15px" (click)="showMore()">More Products</button>
+  <div class="alert alert-warning">
+    Nombre de produits: {{ (products$ |async)?.length }}
+  </div>
+  <div class="row" style="margin-top: 4%">
+    <div class="col-md-4" *ngFor="let product of products$ | async">
+      <app-product-item [product]="product"></app-product-item>
+    </div>
+  </div>
+</div>
+
+

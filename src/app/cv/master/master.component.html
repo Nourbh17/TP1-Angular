@@ -1,0 +1,6 @@
+<div class="row">
+  <app-list [cvs]="cvs" (itemSelected)="showDetail($event)"></app-list>
+</div>
+<div class="row">
+  <router-outlet></router-outlet>
+</div>
