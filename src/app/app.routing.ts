@@ -11,6 +11,7 @@ import {cvResolver} from "./cv/resolvers/cv.resolver";
 import {detailResolver} from "./cv/resolvers/detail.resolver";
 import {MasterComponent} from "./cv/master/master.component";
 import {AddComponent} from "./cv/add/add.component";
+import {cvGuard} from "./cv/guards/cv.guard";
 
 
 
@@ -25,7 +26,8 @@ const APP_ROUTING: Routes = [
                   resolve: { cv: detailResolver },
                 },
               ],},
-            {path:'add',component:AddComponent},
+            {path:'add',component:AddComponent,canDeactivate: [cvGuard],},
+            {path:'update/:id',component:AddComponent,canDeactivate: [cvGuard],},
             {path: ':id', component: DetailComponent,resolve:{cv: detailResolver}},
         ],
 

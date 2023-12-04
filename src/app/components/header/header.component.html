@@ -9,6 +9,11 @@
         <li class="nav-item ">
           <a class="nav-link" [routerLink]="['cv']" routerLinkActive="active">CV <span class="sr-only">(current)</span></a>
         </li>
+        <div *ngIf="isLoggedIn$ | async " class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <li class="nav-item ">
+            <a class="nav-link" [routerLink]="['cv/add']" routerLinkActive="active">ADD CV <span class="sr-only">(current)</span></a>
+          </li>
+        </div>
         <li class="nav-item ">
           <a class="nav-link" [routerLink]="['cv/list']" routerLinkActive="active">List <span class="sr-only">(current)</span></a>
         </li>

@@ -55,6 +55,9 @@ export class CvComponent implements OnInit{
     this.content=this.seniorCvs
 
   }
+  goto(){
+    this.router.navigate(['cv/add'])
+  }
 
   onForwardCv(cv: Cv) {
     this.selectedCv = cv;

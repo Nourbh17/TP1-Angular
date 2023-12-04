@@ -27,6 +27,7 @@ import { ProductComponent } from './components/products/product/product.componen
 import { ProductItemComponent } from './components/products/product-item/product-item.component';
 import { MasterComponent } from './cv/master/master.component';
 import { AddComponent } from './cv/add/add.component';
+import {loginInterceptorProvider} from "./components/interceptors/loginInterceptor";
 
 
 @NgModule({
@@ -62,7 +63,7 @@ import { AddComponent } from './cv/add/add.component';
     ROUTING,
   	ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [loginInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

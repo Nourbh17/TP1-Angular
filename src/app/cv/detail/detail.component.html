@@ -40,16 +40,21 @@
   <!--              </button>-->
   <div class="row">
 
-  <div class="col-md-6">
+  <div class="col-md-4">
     <button class="btn btn-outline-primary btn-lg btn-block" [routerLink]="['/cv']">
       Back
     </button>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-4" *ngIf="isLoggedIn$ | async ">
     <button class="btn btn-outline-danger btn-lg btn-block" (click)="deleteCv()">
       Delete
     </button>
+  </div>
+    <div class="col-md-4" *ngIf="isLoggedIn$ | async ">
+      <button class="btn btn-outline-danger btn-lg btn-block" (click)="update()">
+        Modify
+      </button>
   </div>
 
 </div>

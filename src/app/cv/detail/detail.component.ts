@@ -3,8 +3,9 @@ import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmbaucheService } from '../services/embauche.service';
-import { switchMap } from 'rxjs';
+import {Observable, switchMap} from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import {AuthentificationService} from "../../services/authentification.service";
 
 @Component({
   selector: 'app-detail',
@@ -13,14 +14,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DetailComponent implements OnInit{
   cv: Cv | undefined;
+  isLoggedIn$ : Observable<boolean>
+  isLoggedOut$ : Observable<boolean>
 
   constructor(private cvService :CvService,
     private embaucheService: EmbaucheService,
+    private authentificationService: AuthentificationService,
     private activatedroute: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router
 
     ){
+    this.isLoggedIn$ = this.authentificationService.isLoggedIn$;
+    this.isLoggedOut$ = this.authentificationService.isLoggedOut$;
     this.activatedroute.params.subscribe(params => {
       this.cv = this.activatedroute.snapshot.data['cv'];
     },error => {
@@ -79,4 +85,12 @@ ngOnInit() {
         );
       }
     }
+
+  update() {
+    if (this.cv) {
+      const link = ['cv/update', this.cv.id];
+      console.log(this.cv.id)
+      this.router.navigate(link);
+    }
   }
+}

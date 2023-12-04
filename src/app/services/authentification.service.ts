@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { User } from '../models/user';
 import { loginDto } from '../dtos/login.dto';
+import {Response} from "../dtos/response.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,6 @@ export class AuthentificationService {
     private http: HttpClient
   ) {
     const user = localStorage.getItem('user');
-
     this.isLoggedIn$ = this.user.pipe(
       map((res)=>{
         if (res == null)
@@ -29,14 +29,14 @@ export class AuthentificationService {
             return true
           return false
         }))
-    
+
         if (user !== null) {
-          this.loginUser(JSON.parse(user));
+          this.loginUser(user);
         } else {
           this.logout();
         }
    }
-  
+
 
   loginUser(user: any) {
     this.user.next(user);
@@ -47,12 +47,15 @@ export class AuthentificationService {
       .post<Response>('https://apilb.tridevs.net/api/Users/login', dto)
       .pipe(
         tap((res) =>{
-          const user = {
-            email: dto.email,
+          const token = {
+            token:res.id,
+            email:dto.email
             //id: userId,
           };
-          localStorage.setItem('user', JSON.stringify(user));
-          this.loginUser(user);   
+          localStorage.setItem('user', res.id);
+          // @ts-ignore
+          this.user.next(token);
+          //this.loginUser(user);
         }),
       )
   }
@@ -65,7 +68,7 @@ export class AuthentificationService {
 
 
   /*
-  
+
   link='https://apilb.tridevs.net/api/Users/login'
   login(credentials: any){
     return this.http.post(this.link, credentials).pipe(
@@ -80,11 +83,11 @@ export class AuthentificationService {
     return user !== null; // Retourne vrai si des informations d'authentification sont présentes, sinon faux
   }
   logout(): Observable<any> {
-    
+
     // Vider les informations stockées localement
     localStorage.removeItem('user');
     return new Observable(observer => {
-      observer.next(true); 
+      observer.next(true);
       observer.complete();
     });
   }*/

@@ -15,11 +15,11 @@ export class CvService {
     private http : HttpClient,
   ){
     this.cvs = [
-      new Cv(1, "Ben Hajla", "Nour", 21,"el1.jpg","student"),
-      new Cv(2, "Ben Hnia", "Intidhar", 21,"el2.jpg","student"),
-      new Cv(3, "Abdelkefi", "Farah",21, "el3.jpg","student"),
-      new Cv(4, "Bousaid", "aziz",41, "","student"),
-      new Cv(5, "ben mbarek", "ranim",44, "","teacher"),
+      new Cv(1, "Ben Hajla", "Nour", 21,21,"el1.jpg","student"),
+      new Cv(2, "Ben Hnia", "Intidhar", 21,21,"el2.jpg","student"),
+      new Cv(3, "Abdelkefi", "Farah",21, 21,"el3.jpg","student"),
+      new Cv(4, "Bousaid", "aziz",41, 21,"","student"),
+      new Cv(5, "ben mbarek", "ranim",44,21, "","teacher"),
     ];
   }
 
@@ -35,15 +35,18 @@ export class CvService {
       )
       .subscribe();
   }
-
+  updateCv(cv: Cv){
+    return this.http.patch(this.link, cv);
+  }
   getCvs() : Observable<Cv[]> {
     return this.http.get<Cv[]>(this.link).pipe(
       map((cvs) => {
         this.cvs = cvs;
         return cvs;
       }),
-      catchError(() => {
+      catchError((e) => {
         //  this.toaster.error('Erreur de récupération de données');
+        console.log('Erreur de récupération de données'+e)
         return of(this.cvs);
       })
     );
@@ -52,7 +55,7 @@ export class CvService {
   getFakeCvs(){
     return this.cvs;
   }
-  addCv(cv: Cv){
+  addCv(cv: Cv): Observable<any> {
     return this.http.post(this.link, cv);
   }
 
