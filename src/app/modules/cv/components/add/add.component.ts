@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CvService } from '../services/cv.service';
+import { CvService } from '../../services/cv.service';
 import { map, Observable, of, tap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {ActivatedRoute, CanDeactivate, Router} from '@angular/router';
-import { Cv } from '../model/cv';
+import { Cv } from '../../model/cv';
 import { ToastrService } from 'ngx-toastr';
-import {CanDesactivate} from "../guards/cv.guard";
+import {CanDesactivate} from "../../guards/cv.guard";
 
 @Component({
   selector: 'app-add',

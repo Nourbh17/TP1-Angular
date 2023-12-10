@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CvService} from "../services/cv.service";
-import {ToastrService} from "ngx-toastr";
-import {Cv} from "../model/cv";
+import {Cv} from "../../model/cv";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({

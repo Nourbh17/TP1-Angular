@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthentificationService } from 'src/app/services/authentification.service';
+import { AuthentificationService } from 'src/app/modules/authentification/services/authentification.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,7 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
 export class HeaderComponent {
   isLoggedIn$ : Observable<boolean>
   isLoggedOut$ : Observable<boolean>
-  
+
   constructor(private authentificationService: AuthentificationService) {
     this.isLoggedIn$ = this.authentificationService.isLoggedIn$;
     this.isLoggedOut$ = this.authentificationService.isLoggedOut$;
@@ -19,7 +19,7 @@ export class HeaderComponent {
   logout(){
     this.authentificationService.logout();
   }
-  
+
   /*isLoggedIn(): boolean {
     // Vérifier l'état de connexion en fonction des informations stockées localement
     return this.authentificationService.isUserLoggedIn(); // Méthode à implémenter dans votre service d'authentification

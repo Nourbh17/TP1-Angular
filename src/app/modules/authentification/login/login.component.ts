@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { loginDto } from 'src/app/dtos/login.dto';
-import { AuthentificationService } from 'src/app/services/authentification.service';
+import { loginDto } from 'src/app/modules/authentification/dtos/login.dto';
+import { AuthentificationService } from 'src/app/modules/authentification/services/authentification.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  
+
   constructor(
     private authentificationService: AuthentificationService,
     private router: Router
@@ -24,7 +24,7 @@ export class LoginComponent {
       this.router.navigate(['cv']);
     }
    )
-  
+
   }*/
   login(credentials: any){
     this.authentificationService.login(
@@ -47,13 +47,13 @@ export class LoginComponent {
 
   /*emailErrorMessage: string = '';
 
-  
+
   validateEmail(email: string) {
-   
+
     if (email.trim() === '') {
       this.emailErrorMessage = 'Veuillez saisir une adresse email.';
     } else {
-      this.emailErrorMessage = ''; 
+      this.emailErrorMessage = '';
     }
   }*/
 }

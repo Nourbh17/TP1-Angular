@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import { Cv } from '../model/cv';
-import { CvService } from '../services/cv.service';
+import { Cv } from '../../model/cv';
+import { CvService } from '../../services/cv.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {EmbaucheService} from "../services/embauche.service";
+import {EmbaucheService} from "../../services/embauche.service";
 import {Observable} from "rxjs";
 
 @Component({

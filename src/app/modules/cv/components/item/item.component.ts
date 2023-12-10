@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Cv } from '../model/cv';
+import { Cv } from '../../model/cv';
 
 
 @Component({

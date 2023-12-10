@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import { Cv } from '../model/cv';
-import { CvService } from '../services/cv.service';
+import { Cv } from '../../model/cv';
+import { CvService } from '../../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmbaucheService } from '../services/embauche.service';
+import { EmbaucheService } from '../../services/embauche.service';
 import {Observable, switchMap} from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import {AuthentificationService} from "../../services/authentification.service";
+import {AuthentificationService} from "../../../authentification/services/authentification.service";
 
 @Component({
   selector: 'app-detail',

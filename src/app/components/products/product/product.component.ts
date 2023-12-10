@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../../../services/product.service";
-import { Product } from "../../../cv/model/Product";
+import { Product } from "../../../models/Product";
 import { BehaviorSubject, Observable, tap, scan, takeWhile } from "rxjs";
 
 @Component({

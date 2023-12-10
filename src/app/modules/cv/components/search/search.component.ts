@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Cv } from '../model/cv';
-import { CvService } from '../services/cv.service';
+import { Cv } from '../../model/cv';
+import { CvService } from '../../services/cv.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
@@ -11,7 +11,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 })
 export class SearchComponent implements OnInit {
   @Input() placeholder: string = 'Search CVs';
-  @Output() cvSelected = new EventEmitter<Cv>(); 
+  @Output() cvSelected = new EventEmitter<Cv>();
   searchControl = new FormControl();
   searchResults: Cv[] = [];
 
@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
 }
 
   onSelectCv(cv: Cv): void {
-    
+
     this.cvSelected.emit(cv);
   }
 

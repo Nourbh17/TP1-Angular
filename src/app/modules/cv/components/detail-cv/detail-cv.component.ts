@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { Cv } from '../model/cv';
-import { EmbaucheService } from '../services/embauche.service';
+import { Cv } from '../../model/cv';
+import { EmbaucheService } from '../../services/embauche.service';
 import { Router } from '@angular/router';
 
 @Component({

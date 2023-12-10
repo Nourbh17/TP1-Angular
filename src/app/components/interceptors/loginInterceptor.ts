@@ -7,7 +7,7 @@ import {
   HttpRequest
 } from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AuthentificationService} from "../../services/authentification.service";
+import {AuthentificationService} from "../../modules/authentification/services/authentification.service";
 
 
 export class LoginInterceptor implements HttpInterceptor{
